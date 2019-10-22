@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<!--This file is the master template of all other twig templates. Include all
+stylesheets, Javascript, jQuery etc here-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Webpage Title</title>
+
+        <!--Insert any new stylesheets here in the head-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ base_url() }}/css/stylesheet.css">
+        <!--------------------------------------------------------------------->
+
+    </head>
+    <body>
+        <!--This is where the nav bar comes from. As we assume it will be shown
+        on every page, it is here, outside the content block.-->
+        {% include 'templates/partials/navigation.twig' %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <!--Insert any Javascript links etc here at the end of the body-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!--------------------------------------------------------------------->
+
+    </body>
+</html>
