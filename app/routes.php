@@ -6,4 +6,8 @@
 * This method can then return a rendered twig template.
 */
 
-$app->get('/', 'HomeController:index');
+$app->get('/', 'HomeController:index')->setName('home');
+
+//Authentication routes
+$app->get('/authentication/signup', 'AuthenticationController:getSignUp')->setName('authentication.signup');
+$app->post('/authentication/signup', 'AuthenticationController:postSignUp');

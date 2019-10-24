@@ -56,5 +56,9 @@ $container['HomeController'] = function($container) {
     return new \App\Controllers\HomeController($container);
 };
 
+$container['AuthenticationController'] = function($container) {
+    return new \App\Controllers\Authentication\AuthenticationController($container);
+};
+
 
 require __DIR__ . '/../app/routes.php';

@@ -8,8 +8,12 @@ stylesheets, Javascript, jQuery etc here-->
         <title>Webpage Title</title>
 
         <!--Insert any new stylesheets here in the head-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        <link rel="stylesheet" href="{{ base_url() }}/css/stylesheet.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/app.css">
+        <link rel="stylesheet" href="{{ base_url() }}/css/navigation.css">
         <link rel="stylesheet" href="{{ base_url() }}/css/stylesheet.css">
+
         <!--------------------------------------------------------------------->
 
     </head>
@@ -17,14 +21,14 @@ stylesheets, Javascript, jQuery etc here-->
         <!--This is where the nav bar comes from. As we assume it will be shown
         on every page, it is here, outside the content block.-->
         {% include 'templates/partials/navigation.twig' %}
-        <div class="container">
+        <div class="app-container">
             {% block content %}
             {% endblock %}
         </div>
 
         <!--Insert any Javascript links etc here at the end of the body-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
         <!--------------------------------------------------------------------->
 
     </body>
