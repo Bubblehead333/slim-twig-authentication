@@ -3,7 +3,7 @@
 
 This project builds upon the lightweight Slim framework and uses Twig templates
 to render views. It is intended to be a convenient solution for building
-lightweight websites with small databases.
+lightweight websites with small databases storing user information.
 
 The repository contains:
 Slim - http://www.slimframework.com/
@@ -41,10 +41,10 @@ worked out of the box :)
 <h4>Database</h4>
 
 The database connector can be found in app.php, at the time of writing these
-credentials are raw text and are NOT secure. This project attempt to connect to
+credentials are raw text and are NOT secure. This project attempts to connect to
 a MySQL database called 'your-database-name'. I would also recommend you change
 this :)
 
-It is intended that the database be queried in the Controller classes under App/
-You can find documentation on how to use Eloquents syntax here:
+It is intended that the database is queried through the Controller classes under
+App/. Eloquent's documentation can be found here:
 https://laravel.com/docs/5.8/eloquent

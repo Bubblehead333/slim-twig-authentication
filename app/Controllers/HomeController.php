@@ -11,5 +11,4 @@ class HomeController extends Controller
     {
         return $this->container->view->render($response, 'index.twig');
     }
-
 }
