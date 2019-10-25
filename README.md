@@ -48,3 +48,8 @@ this :)
 It is intended that the database is queried through the Controller classes under
 App/. Eloquent's documentation can be found here:
 https://laravel.com/docs/5.8/eloquent
+
+<h4>Validation</h4>
+
+Uses Respect's validation tool: https://github.com/Respect/Validation
+List of available validation rules can be found here: https://respect-validation.readthedocs.io/en/1.1/list-of-rules/
