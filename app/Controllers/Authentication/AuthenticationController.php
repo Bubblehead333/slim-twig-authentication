@@ -20,15 +20,14 @@ class AuthenticationController extends Controller
         $validation = $this->validator->validate($request,
             [
                 'username' => validator::noWhitespace()->notEmpty(),
-                'email' => validator::noWhitespace()->notEmpty(),
+                'email' => validator::noWhitespace()->notEmpty()->email(),
                 'password' => validator::noWhitespace()->notEmpty(),
             ]
         );
 
         //Check if validation returned $errors
         if($validation->failed()) {
-            return $response->withRedirect($this->router->pathFor('auth.signup'));
-
+            return $response->withRedirect($this->router->pathFor('authentication.signup'));
         }
 
         //Generates a create query with data from sign up form

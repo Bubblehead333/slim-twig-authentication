@@ -20,6 +20,11 @@ class Validator
                 $this->errors[$field] = $e->getMessages();
             }
         }
+
+        //Attach errors to global session variables so they can be displayed on
+        //a view
+        $_SESSION['errors'] = $this->errors;
+
         //Validation Succeeded!
         return $this;
     }
@@ -27,6 +32,6 @@ class Validator
     //This method is a simple check to see whether errors array is not empty
     public function failed()
     {
-        return !empty($this-errors);
+        return !empty($this->errors);
     }
 }
