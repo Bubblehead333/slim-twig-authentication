@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
         $validation = $this->validator->validate($request,
             [
                 'username' => validator::noWhitespace()->notEmpty(),
-                'email' => validator::noWhitespace()->notEmpty()->email(),
+                'email' => validator::noWhitespace()->notEmpty()->email()->EmailAvailable(),
                 'password' => validator::noWhitespace()->notEmpty(),
             ]
         );
