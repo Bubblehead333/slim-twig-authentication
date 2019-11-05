@@ -11,3 +11,10 @@ $app->get('/', 'HomeController:index')->setName('home');
 //Authentication routes
 $app->get('/authentication/signup', 'AuthenticationController:getSignUp')->setName('authentication.signup');
 $app->post('/authentication/signup', 'AuthenticationController:postSignUp');
+
+//Sign In routes
+$app->get('/authentication/signin', 'AuthenticationController:getSignIn')->setName('authentication.signin');
+$app->post('/authentication/signin', 'AuthenticationController:postSignIn');
+
+//Sign Out routes
+$app->get('/authentication/signiout', 'AuthenticationController:getSignOut')->setName('authentication.signout');

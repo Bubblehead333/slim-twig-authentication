@@ -5,17 +5,10 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2>Sign up</h2>
+                <h2>Sign In</h2>
             </div>
             <div class="panel-body">
-                <form action="{{ path_for('authentication.signup') }}" method="post">
-                    <div class="form-group {{ errors.username ? ' has-error' : '' }}">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" placeholder="Your username" class="form-control"  value="{{ old.username }}">
-                        {% if errors.username %}
-                            <span class="help-block">{{ errors.username | first }}</span>
-                        {% endif %}
-                    <div>
+                <form action="{{ path_for('authentication.signin') }}" method="post">
                     <div class="form-group {{ errors.email ? ' has-error' : '' }}">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" placeholder="you@domain.com" class="form-control" value="{{ old.email }}">
@@ -31,13 +24,11 @@
                             <span class="help-block">{{ errors.password | first }}</span>
                         {% endif %}
                     <div>
-                    <button type="submit" class="btn btn-default submit-btn">Submit</button>
+                    <button type="submit" class="btn btn-default submit-btn">Sign In</button>
 
                     <!--This method protects against Cross Site Request Forger attacks-->
                     {{ csrf.field | raw }}
                 </form>
-
-
             </div>
         </div>
     </div>

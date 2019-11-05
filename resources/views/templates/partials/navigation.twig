@@ -1,6 +1,21 @@
 <ul>
-  <li><a href="{{ path_for('home') }}">Home</a></li>
-  <li><a href="#">News</a></li>
-  <li><a href="#">Contact</a></li>
-  <li><a href="{{ path_for('authentication.signup') }}">Sign up</a></li>
+    <div class="container">
+        <li><a href="#">Website Name</a></li>
+        <li><a href="{{ path_for('home') }}">Home</a></li>
+
+
+        {% if authentication.check %}
+            <li class="nav-dropdown nav-right">
+                <!--This should be used to display a username, or a first name and last name-->
+                <a href="javascript:void(0)" class="nav-dropbtn">{{ authentication.user.username }}</a>
+                <div class="nav-dropdown-content">
+                    <a href="#">Change Password</a>
+                    <a href="{{ path_for('authentication.signout') }}">Log Out</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="nav-right"><a href="{{ path_for('authentication.signup') }}">Sign Up</a></li>
+            <li class="nav-right"><a href="{{ path_for('authentication.signin') }}">Sign In</a></li>
+        {% endif %}
+    </div>
 </ul>

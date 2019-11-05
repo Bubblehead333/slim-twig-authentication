@@ -9,12 +9,55 @@ use Respect\Validation\Validator as validator;
 
 class AuthenticationController extends Controller
 {
+    public function getSignOut($request, $response)
+    {
+        $this->authentication->logout();
+        return $response->withRedirect($this->router->pathFor('home'));
+    }
+
+    /**
+     * Renders the view for allowing a user to sign in
+     * @return [type] [description]
+     */
+    public function getSignIn($request, $response)
+    {
+        return $this->view->render($response, 'authentication/signin.twig');
+    }
+
+    public function postSignIn($request, $response)
+    {
+        //Using for inputs, attempt to authenticate user
+        $authentication = $this->authentication->attempt(
+            $request->getParam('email'),
+            $request->getParam('password')
+        );
+
+        //If authentication failed, redirect with error message
+        if(!$authentication) {
+            return $response->withRedirect($this->router->pathFor('authentication.signin'));
+        }
+        return $response->withRedirect($this->router->pathFor('home'));
+    }
+
+    /**
+     * This method renders the view for allowing a user to register as a
+     * new user.
+     * @param Request $request  [description]
+     * @param Response $response [description]
+     * @return View             Shows the signup form
+     */
     public function getSignUp($request, $response)
     {
-        // var_dump($this->csrf->getTokenValueKey());
         return $this->view->render($response, 'authentication\signup.twig');
     }
 
+    /**
+     * This method accepts form data, validates it, if validation passes,
+     * creates a new user in the database.
+     * @param  Request $request  [description]
+     * @param  Response $response [description]
+     * @return http_redirect      Redirects to home page
+     */
     public function postSignUp($request, $response)
     {
         //Perform a validation check before data is sent to database
@@ -26,7 +69,8 @@ class AuthenticationController extends Controller
             ]
         );
 
-        //Check if validation returned $errors
+        //Check if validation returned $errors, redirect if validation returned
+        //errors.
         if($validation->failed()) {
             return $response->withRedirect($this->router->pathFor('authentication.signup'));
         }
@@ -39,6 +83,8 @@ class AuthenticationController extends Controller
                 'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
             ]
         );
+
+        $this->authentication->attempt($user->email, $request->getParam('password'));
 
         return $response->withRedirect($this->router->pathFor('home'));
     }

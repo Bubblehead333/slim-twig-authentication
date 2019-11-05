@@ -39,6 +39,13 @@ $container['db'] = function($container) use ($capsule) {
     return $capsule;
 };
 
+$container['authentication'] = function($container) {
+    return new \App\Authentication\Authentication;
+};
+
+$container['flash'] = function($container) {
+    return new \Slim\Flash\Messages;
+};
 
 //Turn caching on to store cached views on a production machine
 $container['view'] = function($container) {
@@ -50,6 +57,13 @@ $container['view'] = function($container) {
         $container->router,
         $container->request->getUri()
     ));
+
+    $view->getEnvironment()->addGlobal('authentication', [
+        'check' => $container->authentication->check(),
+        'user' => $container->authentication->user(),
+    ]);
+
+    $view->getEnvironment()->addGlobal('flash', $container->flash);
 
     return $view;
 };
@@ -72,8 +86,12 @@ $container['csrf'] = function($container) {
     return new \Slim\Csrf\Guard;
 };
 
+
+
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
+$app->add(new \App\Middleware\CSRFViewMiddleware($container));
+
 
 $app->add($container->csrf);
 
