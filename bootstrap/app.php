@@ -1,6 +1,7 @@
 <?php
 
 use Respect\Validation\Validator as validator;
+
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -66,8 +67,15 @@ $container['AuthenticationController'] = function($container) {
     return new \App\Controllers\Authentication\AuthenticationController($container);
 };
 
+
+$container['csrf'] = function($container) {
+    return new \Slim\Csrf\Guard;
+};
+
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
+
+$app->add($container->csrf);
 
 validator::with('App\\Validation\\Rules\\');
 
