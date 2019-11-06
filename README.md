@@ -6,11 +6,9 @@ to render views. It is intended to be a convenient solution for building
 lightweight websites with small databases storing user information.
 
 The repository contains:
-Slim - http://www.slimframework.com/
-Twig - https://twig.symfony.com/
-Laravel (Eloquent) - https://laravel.com/
-
-<b>This project is still a work in progress</b>
+Slim - http://www.slimframework.com/<br>
+Twig - https://twig.symfony.com/<br>
+Laravel (Eloquent) - https://laravel.com/<br>
 
 <h2>Guide</h2>
 
@@ -51,5 +49,5 @@ https://laravel.com/docs/5.8/eloquent
 
 <h4>Validation</h4>
 
-Uses Respect's validation tool: https://github.com/Respect/Validation
-List of available validation rules can be found here: https://respect-validation.readthedocs.io/en/1.1/list-of-rules/
+Uses Respect's validation tool: https://github.com/Respect/Validation<br>
+List of available validation rules can be found here: https://respect-validation.readthedocs.io/en/1.1/list-of-rules/<br>
