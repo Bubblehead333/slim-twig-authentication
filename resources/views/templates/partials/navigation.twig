@@ -9,7 +9,7 @@
                 <!--This should be used to display a username, or a first name and last name-->
                 <a href="javascript:void(0)" class="nav-dropbtn">{{ authentication.user.username }}</a>
                 <div class="nav-dropdown-content">
-                    <a href="#">Change Password</a>
+                    <a href="{{ path_for('authentication.password.change') }}">Change Password</a>
                     <a href="{{ path_for('authentication.signout') }}">Log Out</a>
                 </div>
             </li>

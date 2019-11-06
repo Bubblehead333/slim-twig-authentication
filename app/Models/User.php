@@ -18,4 +18,15 @@ class User extends Model
         'email',
         'password',
     ];
+
+    /**
+     * Changes a users password
+     * @param string $password String to change password to
+     */
+    public function setPassword($password)
+    {
+        $this->update([
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ]);
+    }
 }

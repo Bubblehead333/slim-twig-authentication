@@ -6,9 +6,19 @@ use App\Models\User;
 use App\Controllers\Controller;
 use Respect\Validation\Validator as validator;
 
-
+/**
+ * AuthenticationController handles all User signing in, signing up and logging
+ * out processes.
+ * Validation rules are enforced to ensure correct information is used.
+ */
 class AuthenticationController extends Controller
 {
+    /**
+     * Signs out current user in session
+     * @param  Request $request  [description]
+     * @param  Response $response [description]
+     * @return [type]           [description]
+     */
     public function getSignOut($request, $response)
     {
         $this->authentication->logout();
@@ -24,6 +34,13 @@ class AuthenticationController extends Controller
         return $this->view->render($response, 'authentication/signin.twig');
     }
 
+    /**
+     * Processes input from sign in form, signs User in if credentials
+     * are correct.
+     * @param  Request $request  [description]
+     * @param  Response $response [description]
+     * @return [type]           [description]
+     */
     public function postSignIn($request, $response)
     {
         //Using for inputs, attempt to authenticate user
@@ -72,6 +89,7 @@ class AuthenticationController extends Controller
         //Check if validation returned $errors, redirect if validation returned
         //errors.
         if($validation->failed()) {
+            $this->flash->addMessage('error', 'Details do not match an account.');
             return $response->withRedirect($this->router->pathFor('authentication.signup'));
         }
 
@@ -83,7 +101,7 @@ class AuthenticationController extends Controller
                 'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
             ]
         );
-
+        $this->flash->addMessage('info', 'Account created successfully!');
         $this->authentication->attempt($user->email, $request->getParam('password'));
 
         return $response->withRedirect($this->router->pathFor('home'));
