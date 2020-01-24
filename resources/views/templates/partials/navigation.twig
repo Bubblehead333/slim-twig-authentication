@@ -1,21 +1,92 @@
-<ul>
-    <div class="container">
-        <li><a href="#">Website Name</a></li>
-        <li><a href="{{ path_for('home') }}">Home</a></li>
+<ul class="nav-desktop">
+    <li class="nav-list">
+        <a class="nav-home" href="{{ path_for('home') }}">
+            Website
+            <!-- <img style="height:22px; width:22px;" src="#"> -->
+        </a>
+    </li>
+    <li class="nav-list">
+        <li class="nav-dropdown nav-left">
+            <!--This should be used to display a username, or a first name and last name-->
+            <a href="#" class="nav-dropbtn">DROPDOWN 1</a>
+            <div class="nav-dropdown-content">
+                <a href="#">Value 1</a>
+                <a href="#">Value 2</a>
+            </div>
+        </li>
+    </li>
 
-
-        {% if authentication.check %}
-            <li class="nav-dropdown nav-right">
-                <!--This should be used to display a username, or a first name and last name-->
-                <a href="javascript:void(0)" class="nav-dropbtn">{{ authentication.user.username }}</a>
-                <div class="nav-dropdown-content">
-                    <a href="{{ path_for('authentication.password.change') }}">Change Password</a>
-                    <a href="{{ path_for('authentication.signout') }}">Log Out</a>
-                </div>
-            </li>
-        {% else %}
-            <li class="nav-right"><a href="{{ path_for('authentication.signup') }}">Sign Up</a></li>
-            <li class="nav-right"><a href="{{ path_for('authentication.signin') }}">Sign In</a></li>
-        {% endif %}
-    </div>
+    <li class="nav-list">
+        <li class="nav-dropdown nav-left">
+            <!--This should be used to display a username, or a first name and last name-->
+            <a href="#" class="nav-dropbtn">DROPDOWN 2</a>
+            <div class="nav-dropdown-content">
+                <a href="#">Value 1</a>
+                <a href="#">Value 2</a>
+            </div>
+        </li>
+    </li>
+    <!--The following is only visible when user is logged in-->
+    {% if authentication.check %}
+        <li class="nav-dropdown nav-right">
+            <!--This should be used to display a username, or a first name and last name-->
+            <a href="javascript:void(0)" class="nav-dropbtn">{{ authentication.user.username }}</a>
+            <div class="nav-dropdown-content">
+                <a href="{{ path_for('authentication.password.change') }}">Change Password</a>
+                <a href="{{ path_for('authentication.signout') }}">Log Out</a>
+            </div>
+        </li>
+    {% else %}
+    <!--The following is only visible when user is not logged in-->
+    <li class="nav-right"><a href="{{ path_for('authentication.register') }}">Register</a></li>
+        <li class="nav-right"><a href="{{ path_for('authentication.signin') }}">Sign In</a></li>
+    {% endif %}
+    <!-- </div> -->
 </ul>
+
+
+<ul class="nav-mobile">
+    <li class="nav-list">
+        <a class="nav-home" href="{{ path_for('home') }}">
+            Website
+            <img style="height:22px; width:22px;" src="">
+        </a>
+    </li>
+    <li class="nav-right">
+        <a onclick="toggleSidebar()">MENU</a>
+    </li>
+</ul>
+
+
+<ul class="sidenav">
+    <li class="sidenav-list-header"><b>DROPDOWN</b></li>
+    <li class="sidenav-list"><a href="#">Value 1</a></li>
+    <li class="sidenav-list"><a href="#">Value 2</a></li>
+
+    <li class="sidenav-list-header"><b>DROPDOWN</b></li>
+    <li class="sidenav-list"><a href="#">Value 1</a></li>
+    <li class="sidenav-list"><a href="#">Value 2</a></li>
+
+{% if authentication.check %}
+    <li class="sidenav-list-header"><b>PROFILE</b> - {{ authentication.user.username }}</li>
+    <li class="sidenav-list"><a href="{{ path_for('authentication.password.change') }}">Change Password</a></li>
+    <li class="sidenav-list"><a href="{{ path_for('authentication.signout') }}">Log Out</a></li>
+
+{% else %}
+<!--The following is only visible when user is not logged in-->
+    <li class="sidenav-list-header"><b>PROFILE</b></li>
+    <li class="sidenav-list"><a href="{{ path_for('authentication.register') }}">Register</a></li>
+    <li class="sidenav-list"><a href="{{ path_for('authentication.signin') }}">Sign In</a></li>
+{% endif %}
+</ul>
+
+<script>
+function toggleSidebar() {
+    if(document.getElementsByClassName("sidenav")[0].style.display == "block") {
+        document.getElementsByClassName("sidenav")[0].style.display = "none";
+    } else {
+        document.getElementsByClassName("sidenav")[0].style.display = "block";
+    }
+}
+
+</script>

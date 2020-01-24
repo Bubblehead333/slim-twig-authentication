@@ -16,8 +16,8 @@ $app->get('/', 'HomeController:index')->setName('home');
 //These routes should only be accessed if a user is NOT signed in
 $app->group('', function () {
     //Authentication routes
-    $this->get('/authentication/signup', 'AuthenticationController:getSignUp')->setName('authentication.signup');
-    $this->post('/authentication/signup', 'AuthenticationController:postSignUp');
+    $this->get('/authentication/register', 'AuthenticationController:getRegister')->setName('authentication.register');
+    $this->post('/authentication/register', 'AuthenticationController:postRegister');
 
     //Sign In routes
     $this->get('/authentication/signin', 'AuthenticationController:getSignIn')->setName('authentication.signin');

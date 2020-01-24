@@ -63,9 +63,9 @@ class AuthenticationController extends Controller
      * @param Response $response [description]
      * @return View             Shows the signup form
      */
-    public function getSignUp($request, $response)
+    public function getRegister($request, $response)
     {
-        return $this->view->render($response, 'authentication\signup.twig');
+        return $this->view->render($response, 'authentication\register.twig');
     }
 
     /**
@@ -75,7 +75,7 @@ class AuthenticationController extends Controller
      * @param  Response $response [description]
      * @return http_redirect      Redirects to home page
      */
-    public function postSignUp($request, $response)
+    public function postRegister($request, $response)
     {
         //Perform a validation check before data is sent to database
         $validation = $this->validator->validate($request,
@@ -90,7 +90,7 @@ class AuthenticationController extends Controller
         //errors.
         if($validation->failed()) {
             $this->flash->addMessage('error', 'Details do not match an account.');
-            return $response->withRedirect($this->router->pathFor('authentication.signup'));
+            return $response->withRedirect($this->router->pathFor('authentication.register'));
         }
 
         //Generates a create query with data from sign up form

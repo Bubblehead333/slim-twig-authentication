@@ -7,7 +7,8 @@ session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
 
-//Remember to turn 'displayErrorDetails' when released to a production machine!
+//Remember to turn 'displayErrorDetails' off when released to a production
+//machine!
 
 //This is where you place your database credentials...of course plain text is
 //NOT secure!
@@ -58,10 +59,23 @@ $container['view'] = function($container) {
         $container->request->getUri()
     ));
 
-    $view->getEnvironment()->addGlobal('authentication', [
-        'check' => $container->authentication->check(),
-        'user' => $container->authentication->user(),
-    ]);
+    //Try and connect to the database
+    //There is probably a better way of doing this, but for now just so the
+    //website will show when the database is down
+    $_SESSION['database_online'] = true;
+
+    try{
+        $view->getEnvironment()->addGlobal('authentication', [
+            'check' => $container->authentication->check(),
+            'user' => $container->authentication->user(),
+        ]);
+    }
+    catch(Exception $e){
+        $_SESSION['database_online'] = false;
+        //The following can be enabled to show explicit error message, of course
+        //should not be shown on production servers!
+        echo $e->getMessage();
+    }
 
     $view->getEnvironment()->addGlobal('flash', $container->flash);
 

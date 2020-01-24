@@ -1,25 +1,56 @@
-ul {
+ul.nav-desktop {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   overflow: hidden;
-  background-color: #333;
+  background-color: #252525;
 }
 
-li {
+ul.nav-mobile{
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #252525;
+}
+
+ul.sidenav{
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    background-color: white;
+}
+
+
+li.nav-list {
   float: left;
 }
+
+li.sidenav-list a{
+    color: #252525;
+    font-size: 16px;
+}
+
+li.sidenav-list-header{
+    margin-right:20px;
+    padding: 20px;
+    font-size: 22px;
+}
+
 
 li a, .nav-dropbtn {
   display: inline-block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 36px;
   text-decoration: none;
+  font-size: 18px;
 }
 
 li a:hover, .nav-dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: white;
+  text-decoration: none;
 }
 
 li.nav-dropdown {
@@ -30,7 +61,7 @@ li.nav-dropdown {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 240px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -43,10 +74,14 @@ li.nav-dropdown {
   text-align: left;
 }
 
-.nav-dropdown-content a:hover {background-color: #f1f1f1;}
+.nav-dropdown-content a:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
 
 .nav-dropdown:hover .nav-dropdown-content {
   display: block;
+  background-color: white;
 }
 
 .nav-left{
@@ -55,4 +90,37 @@ li.nav-dropdown {
 
 .nav-right{
     float: right;
+}
+
+.nav-home{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+/* This is for small screens */
+@media only screen and (max-width: 840px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile{
+      display: show;
+  }
+  .sidenav{
+      display: none;
+  }
+}
+
+
+/* This is for big screens */
+@media only screen and (min-width: 841px) {
+  .nav-desktop {
+    display: show;
+  }
+  .nav-mobile{
+      display: none;
+  }
+  .sidenav{
+      display: none;
+  }
 }
